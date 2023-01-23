@@ -10,7 +10,6 @@
 		48BBFEA8297DEDA5009F5627 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BBFEA7297DEDA5009F5627 /* AppDelegate.swift */; };
 		48BBFEAA297DEDA5009F5627 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BBFEA9297DEDA5009F5627 /* SceneDelegate.swift */; };
 		48BBFEAC297DEDA5009F5627 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BBFEAB297DEDA5009F5627 /* ViewController.swift */; };
-		48BBFEAF297DEDA5009F5627 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48BBFEAD297DEDA5009F5627 /* Main.storyboard */; };
 		48BBFEB1297DEDA6009F5627 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48BBFEB0297DEDA6009F5627 /* Assets.xcassets */; };
 		48BBFEB4297DEDA6009F5627 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48BBFEB2297DEDA6009F5627 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -20,7 +19,6 @@
 		48BBFEA7297DEDA5009F5627 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		48BBFEA9297DEDA5009F5627 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		48BBFEAB297DEDA5009F5627 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		48BBFEAE297DEDA5009F5627 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		48BBFEB0297DEDA6009F5627 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		48BBFEB3297DEDA6009F5627 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		48BBFEB5297DEDA6009F5627 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -59,7 +57,6 @@
 				48BBFEA7297DEDA5009F5627 /* AppDelegate.swift */,
 				48BBFEA9297DEDA5009F5627 /* SceneDelegate.swift */,
 				48BBFEAB297DEDA5009F5627 /* ViewController.swift */,
-				48BBFEAD297DEDA5009F5627 /* Main.storyboard */,
 				48BBFEB0297DEDA6009F5627 /* Assets.xcassets */,
 				48BBFEB2297DEDA6009F5627 /* LaunchScreen.storyboard */,
 				48BBFEB5297DEDA6009F5627 /* Info.plist */,
@@ -127,7 +124,6 @@
 			files = (
 				48BBFEB4297DEDA6009F5627 /* LaunchScreen.storyboard in Resources */,
 				48BBFEB1297DEDA6009F5627 /* Assets.xcassets in Resources */,
-				48BBFEAF297DEDA5009F5627 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,14 +143,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		48BBFEAD297DEDA5009F5627 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				48BBFEAE297DEDA5009F5627 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		48BBFEB2297DEDA6009F5627 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -290,11 +278,12 @@
 				DEVELOPMENT_TEAM = 23CKY3F7V3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CoinTracker/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CoinTracker;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,9 +291,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fredy.CoinTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -318,11 +310,12 @@
 				DEVELOPMENT_TEAM = 23CKY3F7V3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CoinTracker/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CoinTracker;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.finance";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -330,9 +323,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fredy.CoinTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
