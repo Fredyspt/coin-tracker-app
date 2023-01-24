@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CoinViewController: UIViewController {
 
     private var titleLabel: UILabel!
     private var pickerView: UIPickerView!
@@ -17,12 +17,15 @@ class ViewController: UIViewController {
     private var currencyLabel: UILabel!
     
     let coinPriceContainerHeight: Double = 80.0
-    
+    var coinManager = CoinManager()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(named: "Background Color")
         setupContainerStackView()
         setupPickerView()
+        pickerView.dataSource = self
+        pickerView.delegate = self
+        coinManager.delegate = self
     }
     
     func setupTitleLabel() {
@@ -140,3 +143,37 @@ class ViewController: UIViewController {
     }
 }
 
+extension CoinViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+    // Number of rows
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return coinManager.currencyArray.count
+    }
+    
+    // Number of columns
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return coinManager.currencyArray[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if let currency = coinManager.getCurrency(for: row) {
+            currencyLabel.text = currency
+            coinManager.getCoinPrice(for: currency)
+        }
+    }
+}
+
+extension CoinViewController: CoinManagerDelegate {
+    func didFailWithError(_ error: Error) {
+        print(error)
+    }
+    
+    func didUpdateCoinPrice(_ manager: CoinManager, coinPrice: Double) {
+        DispatchQueue.main.async {
+            self.priceLabel.text = String(format: "%.4f", coinPrice)
+        }
+    }
+}
