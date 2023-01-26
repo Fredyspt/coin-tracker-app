@@ -8,138 +8,20 @@
 import UIKit
 
 class CoinViewController: UIViewController {
-
-    private var titleLabel: UILabel!
-    private var pickerView: UIPickerView!
-    private var containerStackView: UIStackView!
-    private var coinPriceContainer: UIView!
-    private var priceLabel: UILabel!
-    private var currencyLabel: UILabel!
     
-    let coinPriceContainerHeight: Double = 80.0
+    var coinPriceView: CoinPriceView!
     var coinManager = CoinManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(named: "Background Color")
-        setupContainerStackView()
-        setupPickerView()
-        pickerView.dataSource = self
-        pickerView.delegate = self
+        
+        coinPriceView = CoinPriceView()
+        self.view.addSubview(coinPriceView)
+        coinPriceView.autoPinEdgesToSuperviewEdges()
+        
+        coinPriceView.currencySelector.dataSource = self
+        coinPriceView.currencySelector.delegate = self
         coinManager.delegate = self
-    }
-    
-    func setupTitleLabel() {
-        titleLabel = UILabel()
-        titleLabel.text = "CoinTracker"
-        titleLabel.font = UIFont.systemFont(ofSize: 50, weight: .thin)
-        titleLabel.textAlignment = .center
-        titleLabel.numberOfLines = 1
-    }
-    
-    func setupConversionView() {
-        coinPriceContainer = UIView()
-        
-        coinPriceContainer.backgroundColor = .tertiaryLabel
-        coinPriceContainer.layer.cornerRadius = coinPriceContainerHeight * 0.5
-        
-        // Add horizontal stackview
-        let coinPriceStackView = UIStackView()
-        coinPriceContainer.addSubview(coinPriceStackView)
-        
-        coinPriceStackView.axis = .horizontal
-        coinPriceStackView.alignment = .center
-        coinPriceStackView.distribution = .fill
-        coinPriceStackView.spacing = 10
-        
-        let coinImage = UIImageView()
-        coinImage.image = UIImage(systemName: "bitcoinsign.circle.fill")
-        coinImage.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            coinImage.widthAnchor.constraint(equalToConstant: 80),
-            coinImage.heightAnchor.constraint(equalToConstant: coinPriceContainerHeight)
-        ])
-        
-        coinPriceStackView.addArrangedSubview(coinImage)
-        
-        setupPriceLabel()
-        coinPriceStackView.addArrangedSubview(priceLabel)
-        
-        setupCurrencyLabel()
-        coinPriceStackView.addArrangedSubview(currencyLabel)
-        
-        coinPriceStackView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            coinPriceStackView.leadingAnchor.constraint(equalTo: coinPriceContainer.leadingAnchor),
-            coinPriceStackView.trailingAnchor.constraint(equalTo: coinPriceContainer.trailingAnchor, constant: -20),
-        ])
-    }
-    
-    func setupPriceLabel() {
-        priceLabel = UILabel()
-        priceLabel.text = "..."
-        priceLabel.font = UIFont.systemFont(ofSize: 25)
-        priceLabel.textAlignment = .right
-        priceLabel.textColor = .white
-    }
-    
-    func setupCurrencyLabel() {
-        currencyLabel = UILabel()
-        currencyLabel.text = "USD"
-        currencyLabel.font = UIFont.systemFont(ofSize: 25)
-        currencyLabel.textColor = .white
-    }
-    
-    func setupContainerStackView() {
-        containerStackView = UIStackView()
-        view.addSubview(containerStackView)
-        
-        containerStackView.axis = .vertical
-        containerStackView.alignment = .center
-        containerStackView.distribution = .fill
-        containerStackView.spacing = 25
-        
-        setupTitleLabel()
-        containerStackView.addArrangedSubview(titleLabel)
-        
-        setupConversionView()
-        containerStackView.addArrangedSubview(coinPriceContainer)
-        setCoinPriceContainerConstraints()
-        
-        setContainerStackViewConstraints()
-    }
-    
-    func setupPickerView() {
-        pickerView = UIPickerView()
-        self.view.addSubview(pickerView)
-        setPickerViewConstraints()
-    }
-    
-    func setCoinPriceContainerConstraints() {
-        coinPriceContainer.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            coinPriceContainer.leadingAnchor.constraint(equalTo: containerStackView.leadingAnchor, constant: 20),
-            coinPriceContainer.trailingAnchor.constraint(equalTo: containerStackView.trailingAnchor, constant: -20),
-            coinPriceContainer.heightAnchor.constraint(equalToConstant: coinPriceContainerHeight)
-        ])
-    }
-    
-    func setContainerStackViewConstraints() {
-        containerStackView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            containerStackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            containerStackView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
-            containerStackView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor)
-        ])
-    }
-    
-    func setPickerViewConstraints() {
-        pickerView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            pickerView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
-            pickerView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
-            pickerView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
-            pickerView.heightAnchor.constraint(equalToConstant: 216)
-        ])
     }
 }
 
@@ -160,7 +42,7 @@ extension CoinViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if let currency = coinManager.getCurrency(for: row) {
-            currencyLabel.text = currency
+            coinPriceView.currencyLabel.text = currency
             coinManager.getCoinPrice(for: currency)
         }
     }
@@ -173,7 +55,7 @@ extension CoinViewController: CoinManagerDelegate {
     
     func didUpdateCoinPrice(_ manager: CoinManager, coinPrice: Double) {
         DispatchQueue.main.async {
-            self.priceLabel.text = String(format: "%.4f", coinPrice)
+            self.coinPriceView.priceLabel.text = String(format: "%.4f", coinPrice)
         }
     }
 }

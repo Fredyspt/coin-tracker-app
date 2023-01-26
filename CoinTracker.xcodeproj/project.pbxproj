@@ -15,6 +15,7 @@
 		48BBFEBF297F3F96009F5627 /* CoinManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BBFEBE297F3F96009F5627 /* CoinManager.swift */; };
 		48BBFEC1297FA3C5009F5627 /* CoinAPI-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48BBFEC0297FA3C5009F5627 /* CoinAPI-Info.plist */; };
 		48BBFEC3297FB190009F5627 /* CoinAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BBFEC2297FB190009F5627 /* CoinAPIResponse.swift */; };
+		48BBFEC52980EFE7009F5627 /* CoinPriceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BBFEC42980EFE7009F5627 /* CoinPriceView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		48BBFEBE297F3F96009F5627 /* CoinManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinManager.swift; sourceTree = "<group>"; };
 		48BBFEC0297FA3C5009F5627 /* CoinAPI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CoinAPI-Info.plist"; sourceTree = "<group>"; };
 		48BBFEC2297FB190009F5627 /* CoinAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinAPIResponse.swift; sourceTree = "<group>"; };
+		48BBFEC42980EFE7009F5627 /* CoinPriceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinPriceView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 		48BBFEBC297F3F0E009F5627 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				48BBFEC42980EFE7009F5627 /* CoinPriceView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -168,6 +171,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48BBFEC52980EFE7009F5627 /* CoinPriceView.swift in Sources */,
 				48BBFEBF297F3F96009F5627 /* CoinManager.swift in Sources */,
 				48BBFEC3297FB190009F5627 /* CoinAPIResponse.swift in Sources */,
 				48BBFEAC297DEDA5009F5627 /* CoinViewController.swift in Sources */,
