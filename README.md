@@ -29,7 +29,3 @@ retrieved within the app to perform the API calls.
 ### Dark Mode
 
 ![Dark Mode](CoinTracker/Demo/DarkMode.gif)
-
-## How to build
-
-If you wish to build this project, 
